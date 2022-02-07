@@ -21,6 +21,10 @@ class Database:
         """Return the total number of prescribed items."""
         return int(db.session.query(func.sum(PrescribingData.items).label('total_items')).first()[0])
 
+    def get_avg_act_cost(self):
+        """Return average cost."""
+        return db.session.query(func.avg(PrescribingData.ACT_cost)).all()
+
     def get_prescribed_items_per_pct(self):
         """Return the total items per PCT."""
         return db.session.query(func.sum(PrescribingData.items).label('item_sum')).group_by(PrescribingData.PCT).all()
@@ -29,6 +33,23 @@ class Database:
         """Return the distinct PCT codes."""
         return db.session.query(PrescribingData.PCT).distinct().all()
 
+    def get_max_item(self):
+        """Return the maximum quantity item codes."""
+        val = db.session.query(func.max(PrescribingData.quantity)).all()
+        return db.session.query(PrescribingData.BNF_name).filter(PrescribingData.quantity == val[0][0]).first()
+
+    def get_distinct_items(self):
+        """Return the distinct item codes."""
+        return db.session.query(PrescribingData.BNF_name).distinct().all()
+
     def get_n_data_for_PCT(self, pct, n):
         """Return all the data for a given PCT."""
         return db.session.query(PrescribingData).filter(PrescribingData.PCT == pct).limit(n).all()
+
+    def get_percentage(self):
+        """Return all the data for a given PCT."""
+        val = db.session.query(func.max(PrescribingData.quantity)).all()
+        name = db.session.query(PrescribingData.BNF_name).filter(PrescribingData.quantity == val[0][0]).first()
+        totesum = int(db.session.query(func.sum(PrescribingData.quantity)).all()[0][0])
+        methsum = db.session.query(func.sum(PrescribingData.quantity)).filter(PrescribingData.BNF_name == name[0]).all()[0][0]
+        return round((methsum/totesum)*100, 2)
