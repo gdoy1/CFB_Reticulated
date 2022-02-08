@@ -22,9 +22,9 @@ class DatabaseTests(unittest.TestCase):
         """Run post each test."""
         pass
 
-    def test_get_total_number_items(self):
-        """Test that the total number of items returns the correct value."""
-        self.assertEquals(self.db_mod.get_total_number_items(), 8218165, 'Test total items returns correct value')
+    def test_get_total_number_unique_items(self):
+        """Test that the total number of unique items returns the correct value."""
+        self.assertEquals(len(self.db_mod.get_distinct_items()), 13922, 'Test total unique items returns correct value')
 
 if __name__ == "__main__":
     unittest.main()
