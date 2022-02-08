@@ -26,5 +26,9 @@ class DatabaseTests(unittest.TestCase):
         """Test that the total number of items returns the correct value."""
         self.assertEquals(self.db_mod.get_total_number_items(), 8218165, 'Test total items returns correct value')
 
+    def test_get_max_item(self):
+        """Test that the correct item description with the maximum quantity is found"""
+        self.assertEquals(self.db_mod.get_max_item()[0], "Methadone HCl_Oral Soln 1mg/1ml S/F", 'Test maximum item returns correct description')
+
 if __name__ == "__main__":
     unittest.main()
