@@ -36,10 +36,10 @@ class Database:
 
     def get_max_quantity(self):
         """Find item with the maximum summed quantity"""
-        return db.session.query(PrescribingData.BNF_name, func.sum(PrescribingData.quantity)).group_by(PrescribingData.BNF_name).order_by(desc(func.sum(PrescribingData.quantity))).limit(1).all()
+        return db.session.query(PrescribingData.BNF_name, func.max(PrescribingData.quantity)).all()
 
     def find_max_quantity_percentage(self):
         """Get the item with the maximum quantity as a percentage of all prescription"""
-        max_quantity = db.session.query(func.sum(PrescribingData.quantity)).group_by(PrescribingData.BNF_name).order_by(desc(func.sum(PrescribingData.quantity))).limit(1).all()[0][0]
-        all_quantities = db.session.query(func.sum(PrescribingData.quantity)).all()
-        return float(int((max_quantity) / int(all_quantities)) * 100)
+        max_quantity = int(db.session.query(func.max(PrescribingData.quantity)).all()[0][0])
+        all_quantities = int(db.session.query(func.sum(PrescribingData.quantity)).all()[0][0])
+        return round((max_quantity/ all_quantities) * 100, 2)
