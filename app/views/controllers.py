@@ -52,4 +52,4 @@ def generate_barchart_data():
     # convert into lists and return
     data_values = [r[0] for r in data_values]
     pct_codes = [r[0] for r in pct_codes]
-    return [data_values, pct_codes]§
+    return [data_values, pct_codes]

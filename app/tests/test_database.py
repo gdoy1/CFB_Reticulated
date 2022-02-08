@@ -9,7 +9,7 @@ DESCRIPTION:   Suite of tests for testing the dashboards database
 """
 
 import unittest
-#from app import app
+from app import app
 from app.database.controllers import Database
 
 class DatabaseTests(unittest.TestCase):
