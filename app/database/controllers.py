@@ -35,8 +35,7 @@ class Database:
 
     def get_max_item(self):
         """Return the maximum quantity item codes."""
-        val = db.session.query(func.max(PrescribingData.quantity)).all()
-        return db.session.query(PrescribingData.BNF_name).filter(PrescribingData.quantity == val[0][0]).first()
+        return db.session.query(PrescribingData.BNF_name, func.max(PrescribingData.quantity)).all()[0]
 
     def get_distinct_items(self):
         """Return the distinct item codes."""
@@ -48,8 +47,6 @@ class Database:
 
     def get_percentage(self):
         """Return all the data for a given PCT."""
-        val = db.session.query(func.max(PrescribingData.quantity)).all()
-        name = db.session.query(PrescribingData.BNF_name).filter(PrescribingData.quantity == val[0][0]).first()
         totesum = int(db.session.query(func.sum(PrescribingData.quantity)).all()[0][0])
-        methsum = db.session.query(func.sum(PrescribingData.quantity)).filter(PrescribingData.BNF_name == name[0]).all()[0][0]
+        methsum = int(db.session.query(func.max(PrescribingData.quantity)).all()[0][0])
         return round((methsum/totesum)*100, 2)
