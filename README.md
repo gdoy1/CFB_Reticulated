@@ -2,7 +2,7 @@
 Project:
 -Updating a dashboard containing items prescribed from a primary care trust
 
--Decsription: We were provided with a skeleton dashboard and a dataset from which information on the dashboard would be presented. We edited files responsible for presenting data on the dashboard and later tested the work we had carried out with a series of tests.
+-Description: We were provided with a skeleton dashboard and a dataset from which information on the dashboard would be presented. We edited files responsible for presenting data on the dashboard and later tested the work we had carried out with a series of tests.
 
                                  
 How to install and run project: We downloaded the database https://www.dropbox.com/s/76cawm3bmnwdtza/abxdb.db?dl=0 and
