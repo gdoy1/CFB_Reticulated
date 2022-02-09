@@ -5,5 +5,5 @@
 // initialisation function
 function calculate()
 {
-    window.alert("sometext");
+    window.alert("some text");
 }
