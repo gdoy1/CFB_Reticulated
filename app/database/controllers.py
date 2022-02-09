@@ -105,6 +105,9 @@ class Database:
         Returns:
             creatinine clearance (uL/min)
         """
+
+
+
         if sex == "m":
             ccr = (((140 - age) * weight) / (serum_creatinine * 72))
         else:
