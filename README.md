@@ -37,10 +37,10 @@ The dashboard comes with an 'About' feature that enables users to gather some in
 
 Other features include the boxes shown containing key information, these include;
 
-#### total items prescribed
-#### prescribed item
-#### average ACT cost
-#### number of unique items
+#### Total items prescribed
+#### Prescribed item
+#### Average ACT cost
+#### Number of unique items
 
 Perecntage bars show the infection treatment drug of all infection treatments as a percentage
 
