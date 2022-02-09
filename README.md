@@ -1,20 +1,46 @@
 # CFB_Reticulated
-Project:
--Updating a dashboard containing items prescribed from a primary care trust
 
--Description: We were provided with a skeleton dashboard and a dataset from which information on the dashboard would be presented. We edited files responsible for presenting data on the dashboard and later tested the work we had carried out with a series of tests.
+## About the Project
 
-                                 
-How to install and run project: We downloaded the database https://www.dropbox.com/s/76cawm3bmnwdtza/abxdb.db?dl=0 and
-then cloned the following repo https://github.com/IAM-lab/MIE-skeleton from git and into a folder. The run.py file can be used to run/serve the dashboard. The abxdb.db contains the prescribing data.
+This project took a skeleton dashboard and updated the dashboard to include information on the presc>
+The dataset was downloaded and key information was pulled to be displayed on the dashboard with edit>
 
-Problem it solves: The abxdb.db database contains a mass amount of information regarding the prescribed items. The dashboard has been updated to pull and present key information
+The abxdb.db database contains a mass amount of information regarding the prescribed items. The dash>
 
-How to use the Dashboard: The dashboard can be accessed to gather specific information from the prescribing data;
--total items
+## Built With
+
+Major frameworks/libraries used to build this project;
+
+
+
+## Installation
+
+First the database should be downloaded from https://www.dropbox.com/s/76cawm3bmnwdtza/abxdb.db?dl=0>
+Next, the following repo should be cloned into that folder https://github.com/IAM-lab/MIE-skeleton. >
+
+
+## Usage
+
+The dashboard can be accessed to gather specific information from the prescribing data by running th>
+
+![image](/imgD.png)
+
+### Features:
+
+The dashboard comes with an 'About' feature that enables users to gather some information about the >
+
+Other features include the boxes shown containing key information, these include
+-total items prescribed
 -top prescribed item
 -average ACT cost
 -number of unique items
 
-How to contribute to the project: After downloading the database contaning the prescribing data and cloning the repo, the files of interest include controllers.py in the database folder, controllers.py in the views folder.
-and the index.html file found in the templates/dashboard folder. Editing these scripts to enable communication between the three will update/ make changes to the dashboard
+## How to contribute
+
+After downloading the database contaning the prescribing data and cloning the repo, the files of int>
+and the index.html file found in the templates/dashboard folder. Editing these scripts to enable com>
+
+
+
+
+
