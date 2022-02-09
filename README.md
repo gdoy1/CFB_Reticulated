@@ -27,7 +27,7 @@ The dashboard can be accessed to gather specific information from the prescribin
 
 ### Features:
 
-The dashboard comes with an 'About' feature that enables users to gather some information about the >
+The dashboard comes with an 'About' feature that enables users to gather some information about the project
 
 Other features include the boxes shown containing key information, these include
 -total items prescribed
