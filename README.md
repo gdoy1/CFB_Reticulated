@@ -5,6 +5,8 @@
 This project took a skeleton dashboard and updated the dashboard to include information on the prescribing data collected from a primary care trust.
 The dataset was downloaded and key information was pulled to be displayed on the dashboard with edits to the code of several scripts made to ensure this is carried out.
 
+Key infromation pulled extends to include...
+
 
 The abxdb.db database contains a mass amount of information regarding the prescribed items. The dashboard makes key information from this database easy to view, this means the user will not have to spend time searching the database.
 
@@ -37,6 +39,10 @@ Other features include the boxes shown containing key information, these include
 -top prescribed item
 -average ACT cost
 -number of unique items
+
+Perecntage bars show the infection treatment drug of all infection treatments as a percentage
+
+A creatinine calculator has also been implemented for the user
 
 ## How to contribute
 After downloading the database contaning the prescribing data and cloning the repo, the files of interest include controllers.py in the database folder, controllers.py in the views folder,
