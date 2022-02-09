@@ -1,24 +1,41 @@
 # CFB_Reticulated
-Project:
--Updating a dashboard containing items prescribed from a primary care trust
--Decsription: We were provided with a skeleton dashboard and a dataset from which information on the dashboard would be presented.
 
-                                  
+## About the Project
 
-How to install and run project: We downloaded the database https://www.dropbox.com/s/76cawm3bmnwdtza/abxdb.db?dl=0 and
-then cloned the following repo https://github.com/IAM-lab/MIE-skeleton from git and into a folder. The run.py file can be used to run/serve the dashboard. The abxdb.db contains the prescribing data.
+This project took a skeleton dashboard and updated the dashboard to include information on the prescribing data collected from a primary care trust.
+The dataset was downloaded and key information was pulled to be displayed on the dashboard with edits to the code of several scripts being made to ensure this is carried out.
 
-Problem it solves: The abxdb.db database contains a mass amount of information regarding the prescribed items. The dashboard has been updated to pull and present key information
+The abxdb.db database contains a mass amount of information regarding the prescribed items. The dashboard makes key information from this database easy to view, this means the user will not have to spend time searching the database.
 
-Features:
+## Built With
 
-Features:
+Major frameworks/libraries used to build this project;
 
-How to use the Dashboard: The dashboard can be accessed to gather specific information from the prescribing data;
--total items
+
+
+## Installation
+
+First the database should be downloaded from https://www.dropbox.com/s/76cawm3bmnwdtza/abxdb.db?dl=0 and saved in the same folder that the github repository needed for this project will be cloned to.
+Next, the following repo should be cloned into that folder https://github.com/IAM-lab/MIE-skeleton. The run.py file can be used to run/serve the dashboard. The abxdb.db contains the prescribing data.
+
+
+## Usage
+
+The dashboard can be accessed to gather specific information from the prescribing data by running the run.py file and accessing the dashboard using the url http://127.0.0.1:5000/dashboard/home/
+
+![image](/imgD.png)
+
+### Features:
+
+The dashboard comes with an 'About' feature that enables users to gather some information about the project
+
+Other features include the boxes shown containing key information, these include
+-total items prescribed
 -top prescribed item
 -average ACT cost
 -number of unique items
 
-How to contribute to the project: After downloading the database contaning the prescribing data and cloning the repo, the files of interest include controllers.py in the database folder, controllers.py in the views folder.
-and the index.html file found in the templates/dashboard folder. Editing these scripts to enable communication between the three will update/ make changes to the dashboard
+## How to contribute
+
+After downloading the database contaning the prescribing data and cloning the repo, the files of interest include controllers.py in the database folder, controllers.py in the views folder,
+and the index.html file found in the templates/dashboard folder. Editing these scripts to enable communication between the three will update/ make changes to the dashboard so if you have any suggestions that might make our project better, please follow the instructions above and create a pull request through git to get started!
