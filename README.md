@@ -15,8 +15,8 @@ The abxdb.db database contains a mass amount of information regarding the prescr
 
 Major frameworks/libraries used to build this project;
 
--SQL
--Python flask
+#### SQL
+##### Python flask
 
 ## Installation
 
@@ -35,11 +35,12 @@ The dashboard can be accessed to gather specific information from the prescribin
 
 The dashboard comes with an 'About' feature that enables users to gather some information about the project
 
-Other features include the boxes shown containing key information, these include
--total items prescribed
--top prescribed item
--average ACT cost
--number of unique items
+Other features include the boxes shown containing key information, these include;
+
+#### total items prescribed
+#### prescribed item
+#### average ACT cost
+#### number of unique items
 
 Perecntage bars show the infection treatment drug of all infection treatments as a percentage
 
