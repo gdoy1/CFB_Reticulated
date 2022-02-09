@@ -17,13 +17,13 @@ Major frameworks/libraries used to build this project;
 
 ## Installation
 
-First the database should be downloaded from https://www.dropbox.com/s/76cawm3bmnwdtza/abxdb.db?dl=0>
-Next, the following repo should be cloned into that folder https://github.com/IAM-lab/MIE-skeleton. >
+First the database should be downloaded from https://www.dropbox.com/s/76cawm3bmnwdtza/abxdb.db?dl=0 and saved in the same folder that the github repository needed for this project will be cloned to.
+Next, the following repo should be cloned into that folder https://github.com/IAM-lab/MIE-skeleton. The run.py file can be used to run/serve the dashboard. The abxdb.db contains the prescribing data.
 
 
 ## Usage
 
-The dashboard can be accessed to gather specific information from the prescribing data by running unning the run.py file and accessing the dashboard using  the following the url http://127.0.0.1:5000/dashboard/home/
+The dashboard can be accessed to gather specific information from the prescribing data by running unning the run.py file and accessing the dashboard using the following the url http://127.0.0.1:5000/dashboard/home/
 
 
 ![image](/imgD.png)
@@ -39,9 +39,10 @@ Other features include the boxes shown containing key information, these include
 -number of unique items
 
 ## How to contribute
+After downloading the database contaning the prescribing data and cloning the repo, the files of interest include controllers.py in the database folder, controllers.py in the views folder,
+and the index.html file found in the templates/dashboard folder. Editing these scripts to enable communication between the three will update/ make changes to the dashboard 
+So if you have any suggestions that might make our project better, please follow the instructions above and create a pull request through git to get started!
 
-After downloading the database contaning the prescribing data and cloning the repo, the files of int>
-and the index.html file found in the templates/dashboard folder. Editing these scripts to enable com>
 
 
 
