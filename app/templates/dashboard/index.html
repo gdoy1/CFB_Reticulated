@@ -26,6 +26,7 @@
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   <script src="{{ url_for('static', filename='js/barchart.js') }}"></script>
   <script src="{{ url_for('static', filename='js/popup.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/calc.js') }}"></script>
 
   <!-- Page script -->
   <script type=text/javascript>
@@ -367,7 +368,7 @@
                   </div>
                   <br />
                   <hr />
-                  <button type="button" class="btn btn-primary">Calculate</button>
+                  <button type="button" class="btn btn-primary" onclick="calc();">Calculate</button>
                   <button type="button" class="btn btn-danger" onclick="popup.hideCeatCalcFormPopup();">Close</button>
                 </div>
               </div>
