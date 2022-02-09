@@ -50,9 +50,3 @@ A creatinine calculator has also been implemented for the user
 After downloading the database contaning the prescribing data and cloning the repo, the files of interest include controllers.py in the database folder, controllers.py in the views folder,
 and the index.html file found in the templates/dashboard folder. Editing these scripts to enable communication between the three will update/ make changes to the dashboard 
 So if you have any suggestions that might make our project better, please follow the instructions above and create a pull request through git to get started!
-
-
-
-
-
-
