@@ -16,6 +16,7 @@ The abxdb.db database contains a mass amount of information regarding the prescr
 Major frameworks/libraries used to build this project;
 
 SQL
+Python flask
 
 ## Installation
 
