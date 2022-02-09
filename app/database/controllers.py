@@ -94,3 +94,19 @@ class Database:
     def get_helminth_p(self):
         """Return all the data for a given PCT."""
         return round(len(db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('0505')).all()) / len(db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('05')).all()) * 100, 2)
+
+    def creatinine_clearance(sex, age, weight, serum_creatinine):
+        """Function to calculate creatinine clearance according to the Cockcroft-Gault equation
+        Parameters:
+            sex (string): F or M
+            age (integer): Age of patient in years
+            weight (integer): Weight of patient in kg
+            serum_creatinine (integer): Serum creatinine in micromol/L
+        Returns:
+            creatinine clearance (uL/min)
+        """
+        if sex == "m":
+            ccr = (((140 - age) * weight) / (serum_creatinine * 72))
+        else:
+            ccr = 0.85 * ((((140 - age) * weight) / (serum_creatinine * 72)))
+        return ccr
