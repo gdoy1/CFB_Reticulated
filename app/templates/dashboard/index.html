@@ -38,6 +38,23 @@
             barChart.drawChart({{pct|tojson}}, "bar-chart");
         });
   </script>
+
+  <script>
+        function addNumbers()
+        {
+            var serum = document.getElementById("patients-serum");
+            var weight = document.getElementById("patients-weight");
+            var age = document.getElementById("patients-age");
+
+            if (document.getElementById("sex1").checked == true) {
+            var res = (140 - parseInt(age.value)) * parseInt(weight.value) / (parseInt(serum.value * 0.814))
+            document.getElementById('creatinineClearance').innerHTML = res.toFixed(2);
+            } else {
+            var res = 0.85 * (140 - parseInt(age.value)) * parseInt(weight.value) / (parseInt(serum.value * 0.814))
+            document.getElementById('creatinineClearance').innerHTML = res.toFixed(2);
+            }
+        }
+  </script>
 </head>
 
 <body id="page-top">
@@ -351,25 +368,29 @@
                   <p>Sex of patient:</p>
                   <div>
                     <label class="radio-inline">
-                      <input type="radio" name="sex" value="m"> Male
+                      <input type="radio" id="sex1" name="sex" value="m"> Male
                     </label>
                     <label class="radio-inline">
-                      <input type="radio" name="sex" value="f"> Female
+                      <input type="radio" id="sex2" name="sex" value="f"> Female
                     </label>
                     <p>Age of patient (years):</p>
-                    <input type="number" min="1" max="120" name="patients-age" />
+                    <input type="number" min="1" max="120" id="patients-age" name="patients-age" />
                     <br /><br />
                     <p>Weight of patient (kg):</p>
-                    <input type="number" min="1" max="120" name="patients-weight" />
+                    <input type="number" min="1" max="120" id="patients-weight" name="patients-weight" />
                     <br /><br />
                     <p>Serum creatinine (micromol/L):</p>
-                    <input type="number" min="1" max="120" name="patients-serum" />
+                    <input type="number" min="1" max="120" id="patients-serum" name="patients-serum" />
                     <br />
                   </div>
                   <br />
                   <hr />
-                  <button type="button" class="btn btn-primary" onclick="calc();">Calculate</button>
+                  <button type="button" class="btn btn-primary" onclick="addNumbers();">Calculate</button>
                   <button type="button" class="btn btn-danger" onclick="popup.hideCeatCalcFormPopup();">Close</button>
+                  <p></p>
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Creatinine clearance rate:
+                    <span class="text_col_black" id="creatinineClearance"></span>
+                  </div>
                 </div>
               </div>
           </div>
@@ -383,17 +404,18 @@
                 <div class="card-body">
                   <p>This dashboard seeks to inform those in pharmacology and prescriptive roles about the current cost, and use of prescription drugs in the UK.
                   It also provides extra assistance when calculating creatinine clearance rates, utilising information on sex, age and weight of the patient.
-
-                  —Information you can get through the dashboard—
-                  - Total prescription items
-                  - Average ACT cost
-                  - Top prescribed item
-                  - Number of unique items
-
+                  </p><p>
+                  —<b>Information you can get through the dashboard—</b><br>
+                  - Total prescription items<br>
+                  - Average ACT cost<br>
+                  - Top prescribed item<br>
+                  - Number of unique items<br>
+                  </p>
+                  <p>
                   What BNF is: This information on this dashboard is based on the British National Formulary, a database of all approved prescription drugs and their use in the UK and will be updated in line with this database
-                  Assistance: If assistance with this Dashboard is required please contact example@outlook.ac.uk
-                  Authors: Rebecca Locke, Elfreda Kenneison, George Doyle, Aishah Westwood
-                  Built: December 28th 2021
+                  <p>Assistance: If assistance with this Dashboard is required please contact example@outlook.ac.uk
+                  <p>Authors: Rebecca Locke, Elfreda Kenneison, George Doyle, Aishah Westwood
+                  <p><i>Built: December 28th 2021</i>
                   </p>
                   <br />
                   <hr />
