@@ -1,19 +1,19 @@
 """
-NAME:          test_database.py
-AUTHOR:        Alan Davies (Lecturer Health Data Science)
+NAME:          test_database4.py
+AUTHOR:        Elfreda Kenneison
 EMAIL:         alan.davies-2@manchester.ac.uk
 DATE:          24/12/2019
 INSTITUTION:   University of Manchester (FBMH)
 DESCRIPTION:   Suite of tests for testing the dashboards database
-               functionality.
+               functionality.--- Average cost
 """
 
 import unittest
-from app import app
+#from app import app
 from app.database.controllers import Database
 
 class DatabaseTests(unittest.TestCase):
-    """Class for testing database functionality and connection"""
+    """Class for testing database functionality and connection."""
     def setUp(self):
         """Run prior to each test."""
         self.db_mod = Database()
@@ -24,11 +24,8 @@ class DatabaseTests(unittest.TestCase):
 
     def test_get_total_number_items(self):
         """Test that the total number of items returns the correct value."""
-        self.assertEquals(self.db_mod.get_total_number_items(), 8218165, 'Test total items returns correct value')
+        round(self.db_mod.get_avg_act_cost()[0][0], 2), 76.22
 
-    def test_get_max_item(self):
-        """Test that the correct item description with the maximum quantity is found"""
-        self.assertEquals(self.db_mod.get_max_item()[0], "Methadone HCl_Oral Soln 1mg/1ml S/F", 'Test maximum item returns correct description')
 
 if __name__ == "__main__":
     unittest.main()
