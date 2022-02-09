@@ -103,10 +103,13 @@ class Database:
             weight (integer): Weight of patient in kg
             serum_creatinine (integer): Serum creatinine in micromol/L
         Returns:
-            creatinine clearance (uL/min)
+            creatinine clearance (mL/min)
         """
+
+
+
         if sex == "m":
-            ccr = (((140 - age) * weight) / (serum_creatinine * 72))
+            ccr = (((140 - age) * weight) / (serum_creatinine * 0.814))
         else:
-            ccr = 0.85 * ((((140 - age) * weight) / (serum_creatinine * 72)))
+            ccr = 0.85 * ((((140 - age) * weight) / (serum_creatinine * 0.814)))
         return ccr
