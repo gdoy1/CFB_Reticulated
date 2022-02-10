@@ -46,6 +46,10 @@
             var weight = document.getElementById("patients-weight");
             var age = document.getElementById("patients-age");
 
+            if (age.value == '' || serum.value == '' || weight.value == '') {
+            alert("You cannot leave any fields empty. Please check the data has been entered correctly.")
+            }
+
             if (document.getElementById("sex1").checked == false && document.getElementById("sex2").checked == false) {
             alert("You must select a sex before calculating.");
             return 0;
@@ -400,13 +404,13 @@
                       <input type="radio" id="sex2" name="sex" value="f"> Female
                     </label>
                     <p>Age of patient (years):</p>
-                    <input type="number" min="1" max="120" id="patients-age" name="patients-age" onkeypress="return validateNumber(event)"/>
+                    <input type="number" min="1" max="120" id="patients-age" style="width:320px" name="patients-age" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 120"/>
                     <br /><br />
                     <p>Weight of patient (kg):</p>
-                    <input type="number" min="1" max="120" id="patients-weight" name="patients-weight" onkeypress="return validateNumber(event)"/>
+                    <input type="number" min="1" max="200" id="patients-weight" style="width:320px" name="patients-weight" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 200"/>
                     <br /><br />
                     <p>Serum creatinine (micromol/L):</p>
-                    <input type="number" min="1" max="120" id="patients-serum" name="patients-serum" onkeypress="return validateNumber(event)"/>
+                    <input type="number" min="1" max="120" id="patients-serum" style="width:320px" name="patients-serum" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 120"/>
                     <br />
                   </div>
                   <br />
