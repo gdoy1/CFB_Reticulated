@@ -96,14 +96,17 @@
             return pattern.test(e.key )
         }
   </script>
+  <!--Function to clear all fields behind the 'Clear' button. Resets all fields to empty-->
   <script>
     function ClearFields() {
-
+    // Clear each number field to empty
     document.getElementById("patients-serum").value = "";
     document.getElementById("patients-weight").value = "";
     document.getElementById("patients-age").value = "";
+    // Clear the radio buttons for sex to unchecked
     document.getElementById("sex1").checked = false;
     document.getElementById("sex2").checked = false;
+    // Clear the creatinine clearance rate result 
     document.getElementById('creatinineClearance').innerHTML = "";
 }
   </script>
