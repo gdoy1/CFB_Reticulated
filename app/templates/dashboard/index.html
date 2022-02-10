@@ -415,23 +415,35 @@
                       <input type="radio" id="sex2" name="sex" value="f"> Female
                     </label>
                     <p>Age of patient (years):</p>
-                    <input type="number" min="1" max="120" id="patients-age" style="width:320px" name="patients-age" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 120"/>
+                    <input type="number" min="1" max="120" id="patients-age" style="width:330px" name="patients-age" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 120"/>
                     <br /><br />
                     <p>Weight of patient (kg):</p>
-                    <input type="number" min="1" max="442" id="patients-weight" style="width:320px" name="patients-weight" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 442"/>
+                    <input type="number" min="1" max="442" id="patients-weight" style="width:330px" name="patients-weight" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 442"/>
                     <br /><br />
                     <p>Serum creatinine (micromol/L):</p>
-                    <input type="number" min="1" max="120" id="patients-serum" style="width:320px" name="patients-serum" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 120"/>
+                    <input type="number" min="1" max="120" id="patients-serum" style="width:330px" name="patients-serum" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 120"/>
                     <br />
                   </div>
                   <br />
                   <hr />
                   <button type="button" class="btn btn-primary" onclick="calculateCreatinineClearance();">Calculate</button>
-                  <button type="button" class="btn btn-danger" onclick="popup.hideCeatCalcFormPopup();">Close</button>
-                  <button type="button" class="btn btn-primary" onclick="ClearFields();">Clear</button>
+                  &nbsp;
+                  &nbsp;
+                  <button type="button" class="btn btn-danger" onclick="ClearFields();">Clear</button>
+                  &nbsp;
+                  &nbsp;
+                  <button type="button" class="btn btn-primary" onclick="popup.hideCeatCalcFormPopup();">Close</button>
                   <p></p>
-                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="font-size: 20px;"">Creatinine clearance rate (mL/min):
+                  <div class="text-xs font-weight-bold text-primary mb-1" style="font-size: 20px;">Creatinine clearance rate (mL/min):
                     <span class="text_col_black" id="creatinineClearance"></span>
+                    <br />
+                    <br />
+                    <span class="text_col_black" style="font-size: 14px;">Normal ranges (All ages):
+                      <br/>
+                      Female: 85 - 125 mL/min
+                      <br/>
+                      Male: 95 - 140 mL/min
+                    </span>
                   </div>
                 </div>
               </div>
