@@ -41,51 +41,60 @@
   <!-- Script to calculate and check the creatinine clearance calculator-->
   <script>
         function calculateCreatinineClearance()
-        {
+        {   // Get the inputted elements from the form
             var serum = document.getElementById("patients-serum");
             var weight = document.getElementById("patients-weight");
             var age = document.getElementById("patients-age");
 
+            // Check that values are not left empty
             if (age.value == '' || serum.value == '' || weight.value == '') {
             alert("You cannot leave any fields empty. Please check the data has been entered correctly.")
             return 0;
             }
 
+            // Check that one of the sex radio buttons is checked
             if (document.getElementById("sex1").checked == false && document.getElementById("sex2").checked == false) {
             alert("You must select a sex before calculating.");
             return 0;
             }
-
+            
+            // Check patient age is not over 120 (oldest living person)
             if (parseInt(age.value) > 120) {
             alert("Age cannot be more than 120.");
             return 0;
             }
 
+            // Check patients weight is not over known maximum
             if (parseInt(weight.value) > 442) {
             alert("Weight cannot be more than 442kg.");
             return 0;
             }
-
+            
+            // Check patients serum is not over maximum
             if (parseInt(serum.value) > 120) {
             alert("Serum creatinine cannot be more than 120micromol/L.");
             return 0;
             }
 
-
+            // If the sex is male, use the Cockroft-Gault equation without multiplying by 0.85
             if (document.getElementById("sex1").checked == true) {
             var res = (140 - parseInt(age.value)) * parseInt(weight.value) / (parseInt(serum.value * 0.814))
+            // If patient is male and clearance rate is in normal range, output is in green text
             if (res >= 95 && res <= 140) {
 
             document.getElementById('creatinineClearance').innerHTML = "<span style='color: green;'>" + res.toFixed(2) + "</span>";
-          }
+          } // Otherwise if patient is male and output is not within normal range, output is in red text
             else {document.getElementById('creatinineClearance').innerHTML = "<span style='color: red;'>" + res.toFixed(2) + "</span>";}
             } 
             
+            // If patient is female, Cockroft-Gault equation includes multiplying by 0.85
             else {
             var res = 0.85 * (140 - parseInt(age.value)) * parseInt(weight.value) / (parseInt(serum.value * 0.814))
+            // If within normal range, text is green
             if (res >= 85 && res <= 140) {
             document.getElementById('creatinineClearance').innerHTML = "<span style='color: green;'>" + res.toFixed(2) + "</span>";
-            } else {document.getElementById('creatinineClearance').innerHTML = "<span style='color: red;'>" + res.toFixed(2) + "</span>";}
+            } // Otherwise text is red
+            else {document.getElementById('creatinineClearance').innerHTML = "<span style='color: red;'>" + res.toFixed(2) + "</span>";}
 
             }
         }
@@ -311,7 +320,7 @@
             <!-- Content Column -->
             <div class="col-xl-6">
 
-              <!-- Infection treatment drugs - added multiple progress bars and stacked bar -->
+              <!-- Infection treatment drugs -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Infection treatment drug as % of all infection treatments</h6>
@@ -429,13 +438,13 @@
                       <input type="radio" id="sex2" name="sex" value="f"> Female
                     </label>
                     <p>Age of patient (years):</p>
-                    <input type="number" min="1" max="120" id="patients-age" style="width:330px" name="patients-age" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 120"/>
+                    <input type="number" min="1" max="120" id="patients-age" style="width:330px" name="patients-age" onkeypress="return validateNumber(event)" placeholder="Please enter a value between 1 and 120"/>
                     <br /><br />
                     <p>Weight of patient (kg):</p>
-                    <input type="number" min="1" max="442" id="patients-weight" style="width:330px" name="patients-weight" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 442"/>
+                    <input type="number" min="1" max="442" id="patients-weight" style="width:330px" name="patients-weight" onkeypress="return validateNumber(event)" placeholder="Please enter a value between 1 and 442"/>
                     <br /><br />
                     <p>Serum creatinine (micromol/L):</p>
-                    <input type="number" min="1" max="120" id="patients-serum" style="width:330px" name="patients-serum" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 120"/>
+                    <input type="number" min="1" max="120" id="patients-serum" style="width:330px" name="patients-serum" onkeypress="return validateNumber(event)"  placeholder="Please enter a value between 1 and 120"/>
                     <br />
                   </div>
                   <br />
