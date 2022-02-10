@@ -46,6 +46,30 @@
             var weight = document.getElementById("patients-weight");
             var age = document.getElementById("patients-age");
 
+            if (age.value == '' || serum.value == '' || weight.value == '') {
+            alert("You cannot leave any fields empty. Please check the data has been entered correctly.")
+            }
+
+            if (document.getElementById("sex1").checked == false && document.getElementById("sex2").checked == false) {
+            alert("You must select a sex before calculating.");
+            return 0;
+            }
+
+            if (parseInt(age.value) > 120) {
+            alert("Age cannot be more than 120.");
+            return 0;
+            }
+
+            if (parseInt(weight.value) > 442) {
+            alert("Weight cannot be more than 442kg.");
+            return 0;
+            }
+
+            if (parseInt(serum.value) > 120) {
+            alert("Serum creatinine cannot be more than 120micromol/L.");
+            return 0;
+            }
+
             if (document.getElementById("sex1").checked == true) {
             var res = (140 - parseInt(age.value)) * parseInt(weight.value) / (parseInt(serum.value * 0.814))
             document.getElementById('creatinineClearance').innerHTML = res.toFixed(2);
@@ -54,6 +78,23 @@
             document.getElementById('creatinineClearance').innerHTML = res.toFixed(2);
             }
         }
+
+        function validateNumber(e) {
+            const pattern = /^[0-9]$/;
+
+            return pattern.test(e.key )
+        }
+  </script>
+  <script>
+    function ClearFields() {
+
+    document.getElementById("patients-serum").value = "";
+    document.getElementById("patients-weight").value = "";
+    document.getElementById("patients-age").value = "";
+    document.getElementById("sex1").checked = false;
+    document.getElementById("sex2").checked = false;
+    document.getElementById('creatinineClearance').innerHTML = "";
+}
   </script>
 </head>
 
@@ -374,19 +415,20 @@
                       <input type="radio" id="sex2" name="sex" value="f"> Female
                     </label>
                     <p>Age of patient (years):</p>
-                    <input type="number" min="1" max="120" required id="patients-age" name="patients-age" placeholder="Please enter a value between 1 and 120"/>
+                    <input type="number" min="1" max="120" id="patients-age" style="width:320px" name="patients-age" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 120"/>
                     <br /><br />
                     <p>Weight of patient (kg):</p>
-                    <input type="number" min="1" max="120" required id="patients-weight" name="patients-weight" placeholder="Please enter a value between 1 and 120"/>
+                    <input type="number" min="1" max="442" id="patients-weight" style="width:320px" name="patients-weight" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 442"/>
                     <br /><br />
                     <p>Serum creatinine (micromol/L):</p>
-                    <input type="number" min="1" max="120" required id="patients-serum" name="patients-serum"  placeholder="Please enter a value between 1 and 120"/>
+                    <input type="number" min="1" max="120" id="patients-serum" style="width:320px" name="patients-serum" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 120"/>
                     <br />
                   </div>
                   <br />
                   <hr />
                   <button type="button" class="btn btn-primary" onclick="calculateCreatinineClearance();">Calculate</button>
                   <button type="button" class="btn btn-danger" onclick="popup.hideCeatCalcFormPopup();">Close</button>
+                  <button type="button" class="btn btn-primary" onclick="ClearFields();">Clear</button>
                   <p></p>
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="font-size: 20px;"">Creatinine clearance rate (mL/min):
                     <span class="text_col_black" id="creatinineClearance"></span>

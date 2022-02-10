@@ -5,18 +5,21 @@
 This project took a skeleton dashboard and updated the dashboard to include information on the prescribing data collected from a primary care trust.
 The dataset was downloaded and key information was pulled to be displayed on the dashboard with edits to the code of several scripts made to ensure this is carried out.
 
-Key infromation pulled extends to include...
+Key information pulled extends to include...
 
+## The Database
 
-The abxdb.db database contains a mass amount of information regarding the prescribed items. The dashboard makes key information from this database easy to view, this means the user will not have to spend time searching the database.
+The abxdb.db database contains a mass amount of information regarding the prescribed items. The schema for the database which incorporates a subset of the prescribing dataset and the relation between the two tables (practice level prescribing and practices) can be seen below. The dashboard makes key information from this database easy to view, this means the user will not have to spend time searching the database.
 
+![image](/DB_diagram.png)
 
 ## Built With
 
 Major frameworks/libraries used to build this project;
 
 #### SQL
-##### Python flask
+#### Python flask
+#### SQLAlchemy
 
 ## Installation
 
