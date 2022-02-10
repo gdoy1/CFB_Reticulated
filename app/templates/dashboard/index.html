@@ -48,6 +48,7 @@
 
             if (age.value == '' || serum.value == '' || weight.value == '') {
             alert("You cannot leave any fields empty. Please check the data has been entered correctly.")
+            return 0;
             }
 
             if (document.getElementById("sex1").checked == false && document.getElementById("sex2").checked == false) {
@@ -114,7 +115,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
