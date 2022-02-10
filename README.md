@@ -9,7 +9,7 @@ Key information pulled extends to include...
 
 ## The Database
 
-The abxdb.db database contains a mass amount of information regarding the prescribed items. The subset of the database and the relation between the two tables can be seen below. The dashboard makes key information from this database easy to view, this means the user will not have to spend time searching the database.
+The abxdb.db database contains a mass amount of information regarding the prescribed items. The schema for the database which incorporates a subset of the prescribing dataset and the relation between the two tables (practice level prescribing and practices) can be seen below. The dashboard makes key information from this database easy to view, this means the user will not have to spend time searching the database.
 
 ![image](/DB_diagram.png)
 
@@ -18,7 +18,8 @@ The abxdb.db database contains a mass amount of information regarding the prescr
 Major frameworks/libraries used to build this project;
 
 #### SQL
-##### Python flask
+#### Python flask
+#### SQLAlchemy
 
 ## Installation
 
