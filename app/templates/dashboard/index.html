@@ -73,10 +73,19 @@
 
             if (document.getElementById("sex1").checked == true) {
             var res = (140 - parseInt(age.value)) * parseInt(weight.value) / (parseInt(serum.value * 0.814))
-            document.getElementById('creatinineClearance').innerHTML = res.toFixed(2);
-            } else {
+            if (res >= 95 && res <= 140) {
+
+            document.getElementById('creatinineClearance').innerHTML = res.toFixed(2) + " (Within normal range)";
+          }
+            else {document.getElementById('creatinineClearance').innerHTML = res.toFixed(2) + " (Not within normal range)";}
+            } 
+            
+            else {
             var res = 0.85 * (140 - parseInt(age.value)) * parseInt(weight.value) / (parseInt(serum.value * 0.814))
-            document.getElementById('creatinineClearance').innerHTML = res.toFixed(2);
+            if (res >= 85 && res <= 140) {
+            document.getElementById('creatinineClearance').innerHTML = res.toFixed(2) + " (Within normal range)";
+            } else {document.getElementById('creatinineClearance').innerHTML = res.toFixed(2) + " (Not within normal range)";}
+
             }
         }
 
