@@ -46,6 +46,26 @@
             var weight = document.getElementById("patients-weight");
             var age = document.getElementById("patients-age");
 
+            if (document.getElementById("sex1").checked == false && document.getElementById("sex2").checked == false) {
+            alert("You must select a sex before calculating.");
+            return 0;
+            }
+
+            if (parseInt(age.value) > 120) {
+            alert("Age cannot be more than 120.");
+            return 0;
+            }
+
+            if (parseInt(weight.value) > 200) {
+            alert("Weight cannot be more than 200kg.");
+            return 0;
+            }
+
+            if (parseInt(serum.value) > 120) {
+            alert("Serum creatinine cannot be more than 120micromol/L.");
+            return 0;
+            }
+
             if (document.getElementById("sex1").checked == true) {
             var res = (140 - parseInt(age.value)) * parseInt(weight.value) / (parseInt(serum.value * 0.814))
             document.getElementById('creatinineClearance').innerHTML = res.toFixed(2);
@@ -53,6 +73,12 @@
             var res = 0.85 * (140 - parseInt(age.value)) * parseInt(weight.value) / (parseInt(serum.value * 0.814))
             document.getElementById('creatinineClearance').innerHTML = res.toFixed(2);
             }
+        }
+
+        function validateNumber(e) {
+            const pattern = /^[0-9]$/;
+
+            return pattern.test(e.key )
         }
   </script>
 </head>
@@ -374,13 +400,13 @@
                       <input type="radio" id="sex2" name="sex" value="f"> Female
                     </label>
                     <p>Age of patient (years):</p>
-                    <input type="number" min="1" max="123" required id="patients-age" name="patients-age" size="40" placeholder="Please enter a value between 1 and 123"/>
+                    <input type="number" min="1" max="120" id="patients-age" name="patients-age" onkeypress="return validateNumber(event)"/>
                     <br /><br />
                     <p>Weight of patient (kg):</p>
-                    <input type="number" min="1" max="442" required id="patients-weight" name="patients-weight" size="40" placeholder="Please enter a value between 1 and 442"/>
+                    <input type="number" min="1" max="120" id="patients-weight" name="patients-weight" onkeypress="return validateNumber(event)"/>
                     <br /><br />
                     <p>Serum creatinine (micromol/L):</p>
-                    <input type="number" min="1" max="150" required id="patients-serum" name="patients-serum" size="40" placeholder="Please enter a value between 1 and 150"/>
+                    <input type="number" min="1" max="120" id="patients-serum" name="patients-serum" onkeypress="return validateNumber(event)"/>
                     <br />
                   </div>
                   <br />
