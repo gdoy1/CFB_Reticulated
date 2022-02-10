@@ -40,7 +40,7 @@
   </script>
 
   <script>
-        function addNumbers()
+        function calculateCreatinineClearance()
         {
             var serum = document.getElementById("patients-serum");
             var weight = document.getElementById("patients-weight");
@@ -385,10 +385,10 @@
                   </div>
                   <br />
                   <hr />
-                  <button type="button" class="btn btn-primary" onclick="addNumbers();">Calculate</button>
+                  <button type="button" class="btn btn-primary" onclick="calculateCreatinineClearance();">Calculate</button>
                   <button type="button" class="btn btn-danger" onclick="popup.hideCeatCalcFormPopup();">Close</button>
                   <p></p>
-                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Creatinine clearance rate:
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="font-size: 20px;"">Creatinine clearance rate (mL/min):
                     <span class="text_col_black" id="creatinineClearance"></span>
                   </div>
                 </div>
