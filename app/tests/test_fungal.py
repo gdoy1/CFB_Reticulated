@@ -17,7 +17,7 @@ class DatabaseTests(unittest.TestCase):
         self.assertEquals(len(self.db_mod.get_fungal()), 2973, 'Checks correct number is shown')
 
     def test_get_fungal_p(self):
-        """Return all the data for a given PCT."""
+        """Checks that correct percentage relative to all infection drugs is correct."""
         self.assertEquals(self.db_mod.get_fungal_p(), 9.44, 'Tests that the percentage is the correct value')
 
 

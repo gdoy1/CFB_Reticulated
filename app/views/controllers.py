@@ -41,7 +41,7 @@ def home():
                            pct_list=pcts, pct_data=selected_pct_data)
 
 def generate_data_for_tiles():
-    """Generate the data for the four home page titles."""
+    """ Tiles extended to include all dashboard data."""
     return [db_mod.get_total_number_items(), len(db_mod.get_distinct_items()), round(db_mod.get_avg_act_cost()[0][0], 2), db_mod.get_max_item()[0], db_mod.get_percentage(), len(db_mod.get_infection()), len(db_mod.get_bacteria()), len(db_mod.get_fungal()), len(db_mod.get_virus()), len(db_mod.get_protozoa()), len(db_mod.get_helminth()), db_mod.get_bacteria_p(), db_mod.get_fungal_p(), db_mod.get_virus_p(), db_mod.get_protozoa_p(), db_mod.get_helminth_p()]
 
 def generate_barchart_data():
