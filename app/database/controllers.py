@@ -41,6 +41,10 @@ class Database:
         """Return the distinct item codes."""
         return db.session.query(PrescribingData.BNF_name).distinct().all()
 
+    def get_distinct_codes(self):
+        """Return the distinct item codes."""
+        return db.session.query(PrescribingData.BNF_code).distinct().all()
+
     def get_n_data_for_PCT(self, pct, n):
         """Return all the data for a given PCT."""
         return db.session.query(PrescribingData).filter(PrescribingData.PCT == pct).limit(n).all()
