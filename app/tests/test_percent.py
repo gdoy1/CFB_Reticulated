@@ -23,7 +23,7 @@ class DatabaseTests(unittest.TestCase):
         pass
 
     def test_get_total_number_unique_items(self):
-        """Test that the total number of unique items returns correct value."""
+        """Test that the max quantity as a percentage returns correct value."""
         self.assertEquals(self.db_mod.get_percentage(), 0.14, 'Test total unique items returns correct value')
 
 if __name__ == "__main__":

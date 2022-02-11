@@ -38,53 +38,63 @@
             barChart.drawChart({{pct|tojson}}, "bar-chart");
         });
   </script>
-
+  <!-- Script to calculate and check the creatinine clearance calculator-->
   <script>
         function calculateCreatinineClearance()
-        {
+        {   // Get the inputted elements from the form
             var serum = document.getElementById("patients-serum");
             var weight = document.getElementById("patients-weight");
             var age = document.getElementById("patients-age");
 
+            // Check that values are not left empty
             if (age.value == '' || serum.value == '' || weight.value == '') {
             alert("You cannot leave any fields empty. Please check the data has been entered correctly.")
+            return 0;
             }
 
+            // Check that one of the sex radio buttons is checked
             if (document.getElementById("sex1").checked == false && document.getElementById("sex2").checked == false) {
             alert("You must select a sex before calculating.");
             return 0;
             }
-
+            
+            // Check patient age is not over 120 (oldest living person)
             if (parseInt(age.value) > 120) {
             alert("Age cannot be more than 120.");
             return 0;
             }
 
+            // Check patients weight is not over known maximum
             if (parseInt(weight.value) > 442) {
             alert("Weight cannot be more than 442kg.");
             return 0;
             }
-
+            
+            // Check patients serum is not over maximum
             if (parseInt(serum.value) > 120) {
             alert("Serum creatinine cannot be more than 120micromol/L.");
             return 0;
             }
 
-
+            // If the sex is male, use the Cockroft-Gault equation without multiplying by 0.85
             if (document.getElementById("sex1").checked == true) {
             var res = (140 - parseInt(age.value)) * parseInt(weight.value) / (parseInt(serum.value * 0.814))
+            // If patient is male and clearance rate is in normal range, output is in green text
             if (res >= 95 && res <= 140) {
 
             document.getElementById('creatinineClearance').innerHTML = "<span style='color: green;'>" + res.toFixed(2) + "</span>";
-          }
+          } // Otherwise if patient is male and output is not within normal range, output is in red text
             else {document.getElementById('creatinineClearance').innerHTML = "<span style='color: red;'>" + res.toFixed(2) + "</span>";}
             } 
             
+            // If patient is female, Cockroft-Gault equation includes multiplying by 0.85
             else {
             var res = 0.85 * (140 - parseInt(age.value)) * parseInt(weight.value) / (parseInt(serum.value * 0.814))
+            // If within normal range, text is green
             if (res >= 85 && res <= 140) {
             document.getElementById('creatinineClearance').innerHTML = "<span style='color: green;'>" + res.toFixed(2) + "</span>";
-            } else {document.getElementById('creatinineClearance').innerHTML = "<span style='color: red;'>" + res.toFixed(2) + "</span>";}
+            } // Otherwise text is red
+            else {document.getElementById('creatinineClearance').innerHTML = "<span style='color: red;'>" + res.toFixed(2) + "</span>";}
 
             }
         }
@@ -95,14 +105,17 @@
             return pattern.test(e.key )
         }
   </script>
+  <!--Function to clear all fields behind the 'Clear' button. Resets all fields to empty-->
   <script>
     function ClearFields() {
-
+    // Clear each number field to empty
     document.getElementById("patients-serum").value = "";
     document.getElementById("patients-weight").value = "";
     document.getElementById("patients-age").value = "";
+    // Clear the radio buttons for sex to unchecked
     document.getElementById("sex1").checked = false;
     document.getElementById("sex2").checked = false;
+    // Clear the creatinine clearance rate result 
     document.getElementById('creatinineClearance').innerHTML = "";
 }
   </script>
@@ -114,9 +127,9 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="background: #660099">
 
-      <!-- Divider -->
+      <!-- Divide -->
       <hr class="sidebar-divider my-0">
       <img id="uom-logo" src="{{url_for('static', filename='img/logo-uom.png') }}" />
       <br />
@@ -212,7 +225,7 @@
             <!-- Total items -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
+                <div class="card-body" >
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total items:</div>
@@ -253,11 +266,11 @@
                       <span class="text_col_black">{{ tile_data[3] }}</span>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">%</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ tile_data[4] }}%</div>
                         </div>
                         <div class="col">
                           <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[4] }}%"></div>
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[4] }}% "></div>
                           </div>
                         </div>
                       </div>
@@ -317,11 +330,11 @@
                   <div class="h5 mb-0 font-weight-bold text-gray-800">{{ tile_data[5] }}</div>
                   <p></p>
                   <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[6]/tile_data[5]*100 }}%"></div>
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[7]/tile_data[5]*100 }}%"></div>
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[8]/tile_data[5]*100 }}%"></div>
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[9]/tile_data[5]*100 }}%"></div>
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[10]/tile_data[5]*100 }}%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated tool-tip" data-toggle="tooltip" data-placement="right" title="Antibacterial" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[6]/tile_data[5]*100 }}%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success tool-tip" data-toggle="tooltip" data-placement="right" title="Antifungal" role="progressbar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[7]/tile_data[5]*100 }}%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info tool-tip" data-toggle="tooltip" data-placement="right" title="Antiviral" role="progressbar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[8]/tile_data[5]*100 }}%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning tool-tip" data-toggle="tooltip" data-placement="right" title="Antiprotozoal" role="progressbar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[9]/tile_data[5]*100 }}%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger tool-tip" data-toggle="tooltip" data-placement="right" title="Anthelmintic" role="progressbar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[10]/tile_data[5]*100 }}%"></div>
                   </div>
                   <p></p>
                   <br>
@@ -329,7 +342,7 @@
                   <div class="h5 mb-0 font-weight-bold text-gray-800">{{ tile_data[6] }}</div>
                   <p></p>
                   <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[6]/tile_data[5]*100 }}%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated tool-tip" data-toggle="tooltip" data-placement="right" title="Antibacterial" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[6]/tile_data[5]*100 }}%"></div>
                   </div>
                   <div class="text-xs font-weight-normal text-primary text-uppercase mb-1"><center>{{ tile_data[11] }}%</center></div>
                   <p></p>
@@ -337,7 +350,7 @@
                   <div class="h5 mb-0 font-weight-bold text-gray-800">{{ tile_data[7] }}</div>
                   <p></p>
                   <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[7]/tile_data[5]*100 }}%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success tool-tip" data-toggle="tooltip" data-placement="right" title="Antifungal" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[7]/tile_data[5]*100 }}%"></div>
                   </div>
                   <div class="text-xs font-weight-normal text-primary text-uppercase mb-1"><center>{{ tile_data[12] }}%</center></div>
                   <p></p>
@@ -345,7 +358,7 @@
                   <div class="h5 mb-0 font-weight-bold text-gray-800">{{ tile_data[8] }}</div>
                   <p></p>
                   <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[8]/tile_data[5]*100 }}%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info tool-tip" data-toggle="tooltip" data-placement="right" title="Antiviral" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[8]/tile_data[5]*100 }}%"></div>
                   </div>
                   <div class="text-xs font-weight-normal text-primary text-uppercase mb-1"><center>{{ tile_data[13] }}%</center></div>
                   <p></p>
@@ -353,7 +366,7 @@
                   <div class="h5 mb-0 font-weight-bold text-gray-800">{{ tile_data[9] }}</div>
                   <p></p>
                   <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[9]/tile_data[5]*100 }}%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning tool-tip" data-toggle="tooltip" data-placement="right" title="Antiprotozoal" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[9]/tile_data[5]*100 }}%"></div>
                   </div>
                   <div class="text-xs font-weight-normal text-primary text-uppercase mb-1"><center>{{ tile_data[14] }}%</center></div>
                   <p></p>
@@ -361,7 +374,7 @@
                   <div class="h5 mb-0 font-weight-bold text-gray-800">{{ tile_data[10] }}</div>
                   <p></p>
                   <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[10]/tile_data[5]*100 }}%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger tool-tip" data-toggle="tooltip" data-placement="right" title="Anthelmintic" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{ tile_data[10]/tile_data[5]*100 }}%"></div>
                   </div>
                   <div class="text-xs font-weight-normal text-primary text-uppercase mb-1"><center>{{ tile_data[15] }}%</center></div>
                   <p></p>
@@ -425,13 +438,13 @@
                       <input type="radio" id="sex2" name="sex" value="f"> Female
                     </label>
                     <p>Age of patient (years):</p>
-                    <input type="number" min="1" max="120" id="patients-age" style="width:330px" name="patients-age" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 120"/>
+                    <input type="number" min="1" max="120" id="patients-age" style="width:330px" name="patients-age" onkeypress="return validateNumber(event)" placeholder="Please enter a value between 1 and 120"/>
                     <br /><br />
                     <p>Weight of patient (kg):</p>
-                    <input type="number" min="1" max="442" id="patients-weight" style="width:330px" name="patients-weight" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 442"/>
+                    <input type="number" min="1" max="442" id="patients-weight" style="width:330px" name="patients-weight" onkeypress="return validateNumber(event)" placeholder="Please enter a value between 1 and 442"/>
                     <br /><br />
                     <p>Serum creatinine (micromol/L):</p>
-                    <input type="number" min="1" max="120" id="patients-serum" style="width:330px" name="patients-serum" onkeypress="return validateNumber(event)" size="40" placeholder="Please enter a value between 1 and 120"/>
+                    <input type="number" min="1" max="120" id="patients-serum" style="width:330px" name="patients-serum" onkeypress="return validateNumber(event)"  placeholder="Please enter a value between 1 and 120"/>
                     <br />
                   </div>
                   <br />
@@ -473,19 +486,20 @@
                 </div>
                 <div class="card-body">
                   <p>This dashboard seeks to inform those in pharmacology and prescriptive roles about the current cost, and use of prescription drugs in the UK.
-                  It also provides extra assistance when calculating creatinine clearance rates, utilising information on sex, age and weight of the patient.
+                  It also provides extra assistance when calculating creatinine clearance rates, utilising information on sex, age, weight and serum creatinine of the patient.
                   </p><p>
-                  —<b>Information you can get through the dashboard—</b><br>
-                  - Total prescription items<br>
-                  - Average ACT cost<br>
-                  - Top prescribed item<br>
-                  - Number of unique items<br>
+                  —<b>Information you can retrieve through the dashboard—</b><br>
+                  - Total prescription items<br/>
+                  - Average ACT cost<br/>
+                  - Top prescribed item<br/>
+                  - Number of unique items<br/>
+                  - Prescription of infection drugs by class as % of all infection treatments<br/>
                   </p>
                   <p>
-                  What BNF is: This information on this dashboard is based on the British National Formulary, a database of all approved prescription drugs and their use in the UK and will be updated in line with this database
+                  This information on this dashboard is based on the practice level prescribing dataset from NHS Digital (https://digital.nhs.uk/data-and-information/areas-of-interest/prescribing/practice-level-prescribing-in-england-a-summary/practice-level-prescribing-data-more-information). This uses British National Formulary codes for all approved prescription drugs and their use in the UK and will be updated in line with this database.
                   <p>Assistance: If assistance with this Dashboard is required please contact example@outlook.ac.uk
                   <p>Authors: Rebecca Locke, Elfreda Kenneison, George Doyle, Aishah Westwood
-                  <p><i>Built: December 28th 2021</i>
+                  <p><i>Latest dataset released: December 28th 2021</i>
                   </p>
                   <br />
                   <hr />

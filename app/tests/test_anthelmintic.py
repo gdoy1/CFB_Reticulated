@@ -17,7 +17,7 @@ class DatabaseTests(unittest.TestCase):
         self.assertEquals(len(self.db_mod.get_helminth()), 385, 'Checks correct number is shown')
 
     def test_get_protozoa_p(self):
-        """Return all the data for a given PCT."""
+        """Checks that correct percentage relative to all infection drugs is correct."""
         self.assertEquals(self.db_mod.get_helminth_p(), 1.22, 'Tests that the percentage is the correct value')
 
 
