@@ -11,7 +11,7 @@ Key information pulled extends to include...
 
 The abxdb.db database contains a mass amount of information regarding the prescribed items. The schema for the database which incorporates a subset of the prescribing dataset and the relation between the two tables (practice level prescribing and practices) can be seen below. The dashboard makes key information from this database easy to view, this means the user will not have to spend time searching the database.
 
-![image](/DB_diagram.png)
+![Database schema and relationships between the practice_level_prescribing and practices tables](/DB_diagram.png)
 
 ## Built With
 
@@ -32,7 +32,7 @@ Next, the following repo should be cloned into that folder https://github.com/IA
 The dashboard can be accessed to gather specific information from the prescribing data by running unning the run.py file and accessing the dashboard using the following the url http://127.0.0.1:5000/dashboard/home/
 
 
-![image](/imgD.png)
+![Screenshot of the prescribing dashboard](/imgD.png)
 
 ### Features:
 
