@@ -22,7 +22,7 @@ class Database:
         return int(db.session.query(func.sum(PrescribingData.items).label('total_items')).first()[0])
 
     def get_avg_act_cost(self):
-        """Return average cost."""
+        """Return average cost per item."""
         return db.session.query(func.avg(PrescribingData.ACT_cost)).all()
 
     def get_prescribed_items_per_pct(self):
@@ -34,15 +34,15 @@ class Database:
         return db.session.query(PrescribingData.PCT).distinct().all()
 
     def get_max_item(self):
-        """Return the maximum quantity item codes."""
+        """Return the name of the item with the maximum quantity."""
         return db.session.query(PrescribingData.BNF_name, func.max(PrescribingData.quantity)).all()[0]
 
     def get_distinct_items(self):
-        """Return the distinct item codes."""
+        """Return the unique BNF names."""
         return db.session.query(PrescribingData.BNF_name).distinct().all()
 
     def get_distinct_codes(self):
-        """Return the distinct item codes."""
+        """Return the unique BNF codes."""
         return db.session.query(PrescribingData.BNF_code).distinct().all()
 
     def get_n_data_for_PCT(self, pct, n):
@@ -50,53 +50,53 @@ class Database:
         return db.session.query(PrescribingData).filter(PrescribingData.PCT == pct).limit(n).all()
 
     def get_percentage(self):
-        """Return all the data for a given PCT."""
+        """Return the item with the max quantity as as a percentage of all prescriptions."""
         totesum = int(db.session.query(func.sum(PrescribingData.quantity)).all()[0][0])
         methsum = int(db.session.query(func.max(PrescribingData.quantity)).all()[0][0])
         return round((methsum/totesum)*100, 2)
 
     def get_infection(self):
-        """Return all the data for a given PCT."""
+        """Return the number of infection drugs prescribed."""
         return db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('05')).all()
 
     def get_bacteria(self):
-        """Return all the data for a given PCT."""
+        """Return the number of bacterial infection drugs prescribed."""
         return db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('0501')).all()
 
     def get_fungal(self):
-        """Return all the data for a given PCT."""
+        """Return the number of fungal infection drugs prescribed."""
         return db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('0502')).all()
 
     def get_virus(self):
-        """Return all the data for a given PCT."""
+        """Return the number of viral infection drugs prescribed."""
         return db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('0503')).all()
 
     def get_protozoa(self):
-        """Return all the data for a given PCT."""
+        """Return the number of protozoan infection drugs prescribed."""
         return db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('0504')).all()
 
     def get_helminth(self):
-        """Return all the data for a given PCT."""
+        """Return the number of helminth infection drugs prescribed."""
         return db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('0505')).all()
 
     def get_bacteria_p(self):
-        """Return all the data for a given PCT."""
+        """Return percentage of bacterial infection drugs prescribed as percentage of all infection drugs prescribed."""
         return round(len(db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('0501')).all()) / len(db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('05')).all()) * 100, 2)
 
     def get_fungal_p(self):
-        """Return all the data for a given PCT."""
+        """Return percentage of fungal infection drugs prescribed as percentage of all infection drugs prescribed."""
         return round(len(db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('0502')).all()) / len(db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('05')).all()) * 100, 2)
 
     def get_virus_p(self):
-        """Return all the data for a given PCT."""
+        """Return percentage of viral infection drugs prescribed as percentage of all infection drugs prescribed."""
         return round(len(db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('0503')).all()) / len(db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('05')).all()) * 100, 2)
 
     def get_protozoa_p(self):
-        """Return all the data for a given PCT."""
+        """Return percentage of protozoan infection drugs prescribed as percentage of all infection drugs prescribed."""
         return round(len(db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('0504')).all()) / len(db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('05')).all()) * 100, 2)
 
     def get_helminth_p(self):
-        """Return all the data for a given PCT."""
+        """Return percentage of helminth infection drugs prescribed as percentage of all infection drugs prescribed."""
         return round(len(db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('0505')).all()) / len(db.session.query(PrescribingData.BNF_code).filter(PrescribingData.BNF_code.startswith('05')).all()) * 100, 2)
 
     def creatinine_clearance(sex, age, weight, serum_creatinine):
