@@ -38,7 +38,7 @@
             barChart.drawChart({{pct|tojson}}, "bar-chart");
         });
   </script>
-  <!-- Script to calculate and check the creatinine clearance calculator-->
+  <!-- Script to calculate and check inputs and outputs for the creatinine clearance calculator-->
   <script>
         function calculateCreatinineClearance()
         {   // Get the inputted elements from the form
@@ -90,7 +90,7 @@
             // If patient is female, Cockroft-Gault equation includes multiplying by 0.85
             else {
             var res = 0.85 * (140 - parseInt(age.value)) * parseInt(weight.value) / (parseInt(serum.value * 0.814))
-            // If within normal range, text is green
+            // If within normal range, output text is green
             if (res >= 85 && res <= 140) {
             document.getElementById('creatinineClearance').innerHTML = "<span style='color: green;'>" + res.toFixed(2) + "</span>";
             } // Otherwise text is red
@@ -301,7 +301,7 @@
             </div>
           </div>
 
-          <!-- Content Row -->
+          <!-- Content Row  -->
           <div class="row">
             <div class="col-xl-12 col-lg-7">
               <div class="card shadow mb-4">
@@ -432,36 +432,47 @@
                   <p>Sex of patient:</p>
                   <div>
                     <label class="radio-inline">
+                      <!-- Radio buttons for sex - add two ids for sex for if statements via JScript function-->
                       <input type="radio" id="sex1" name="sex" value="m"> Male
                     </label>
                     <label class="radio-inline">
                       <input type="radio" id="sex2" name="sex" value="f"> Female
                     </label>
                     <p>Age of patient (years):</p>
-                    <input type="number" min="1" max="120" id="patients-age" style="width:330px" name="patients-age" onkeypress="return validateNumber(event)" placeholder="Please enter a value between 1 and 120"/>
+                    <!-- Input box for patient age. Set min, max, validate inputs, add placeholder of what user should enter for accessibility and change width so placeholder can be seen for each -->
+                    <input type="number" min="1" max="120" id="patients-age" style="width:330px" name="patients-age" onkeypress="return validateNumber(event)" placeholder="Please enter a value between 0 and 120"/>
                     <br /><br />
+                    <!-- Input box for patient weight as above -->
                     <p>Weight of patient (kg):</p>
                     <input type="number" min="1" max="442" id="patients-weight" style="width:330px" name="patients-weight" onkeypress="return validateNumber(event)" placeholder="Please enter a value between 1 and 442"/>
                     <br /><br />
+                    <!-- Input box for serum creatinine as above -->
                     <p>Serum creatinine (micromol/L):</p>
                     <input type="number" min="1" max="120" id="patients-serum" style="width:330px" name="patients-serum" onkeypress="return validateNumber(event)"  placeholder="Please enter a value between 1 and 120"/>
                     <br />
                   </div>
                   <br />
                   <hr />
+                  <!-- Add calculate button for clearance rate in blue -->
                   <button type="button" class="btn btn-primary" onclick="calculateCreatinineClearance();">Calculate</button>
+                  <!-- Add spacing between buttons -->
                   &nbsp;
                   &nbsp;
+                  <!-- Add clear all fields button, coloured red -->
                   <button type="button" class="btn btn-danger" onclick="ClearFields();">Clear</button>
+                  <!-- Add spacing between buttons -->
                   &nbsp;
                   &nbsp;
+                  <!-- Add close button, coloured blue -->
                   <button type="button" class="btn btn-primary" onclick="popup.hideCeatCalcFormPopup();">Close</button>
                   <p></p>
                   <br/>
+                  <!-- Output clearance rate -->
                   <div class="text-xs font-weight-bold text-primary mb-1" style="font-size: 20px;">Creatinine clearance rate (mL/min):
                     <span class="text_col_black" id="creatinineClearance"></span>
                     <br />
                     <br />
+                    <!-- Include text below for normal ranges for each sex -->
                     <span class="text_col_black" style="font-size: 14px;">Normal ranges (All ages):
                       <br/>
                       Female: 85 - 125 mL/min
@@ -470,6 +481,7 @@
                     </span>
                     <br/>
                     <br/>
+                    <!-- Include key for the text colour of the clearance rate -->
                     <span class="text_col_black" style="font-size: 14px;">Output key: <br/><span style="color:green">Green: </span>Normal range<br/><span style="color:red">Red: </span>
                     Outside normal range
                     </span>
