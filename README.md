@@ -32,7 +32,7 @@ Next, the following repo should be cloned into that folder https://github.com/IA
 The dashboard can be accessed to gather specific information from the prescribing data by running unning the run.py file and accessing the dashboard using the following the url http://127.0.0.1:5000/dashboard/home/
 
 
-![Screenshot of the prescribing dashboard](/imgD.png "Screenshot of the prescribing dashboard")
+![Screenshot of the prescribing dashboard](/img2.png "Screenshot of the prescribing dashboard")
 
 ### Features:
 
